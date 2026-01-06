@@ -5,6 +5,7 @@ import jakarta.persistence.*;
 
 import java.time.Instant;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -76,5 +77,14 @@ public class Order {
 
     public void setStatus(OrderStatus status) {
         this.status = status;
+    }
+
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+
+    // Método para acessar e retornar uma lista de produtos a partir da classe order
+    public List<Product> getProducts(){
+        return items.stream().map(x -> x.getProduct()).toList();
     }
 }

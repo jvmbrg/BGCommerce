@@ -2,6 +2,7 @@ package com.devbraga.bragacommerce.entities;
 
 import jakarta.persistence.*;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -79,4 +80,11 @@ public class Product {
         this.price = price;
     }
 
+    public Set<OrderItem> getItems() {
+        return items;
+    }
+    //Método para acessar e retornar orders a partir da classe products
+    public List<Order> getOrder(){
+        return items.stream().map(x -> x.getOrder()).toList();
+    }
 }
