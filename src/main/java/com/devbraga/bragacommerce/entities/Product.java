@@ -3,6 +3,7 @@ package com.devbraga.bragacommerce.entities;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 
 @Entity
@@ -86,5 +87,18 @@ public class Product {
     //Método para acessar e retornar orders a partir da classe products
     public List<Order> getOrder(){
         return items.stream().map(x -> x.getOrder()).toList();
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Product product = (Product) o;
+        return Objects.equals(id, product.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hashCode(id);
     }
 }
