@@ -28,4 +28,15 @@ public class ProductService {
         //Método para transformar os registros da lista original em DTO
         return result.map(x -> new ProductDTO(x));
     }
+
+    public ProductDTO insert(ProductDTO dto){
+        Product entity = new Product();
+        entity.setName(dto.getName());
+        entity.setDescription(dto.getDescription());
+        entity.setPrice(dto.getPrice());
+        entity.setImgUrl(dto.getImgUrl());
+
+        entity = productRepository.save(entity);
+        return new ProductDTO(entity);
+    }
 }
