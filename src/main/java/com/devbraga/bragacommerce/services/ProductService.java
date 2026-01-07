@@ -6,7 +6,6 @@ import com.devbraga.bragacommerce.repository.ProductRepository;
 import com.devbraga.bragacommerce.services.exceptions.DatabaseException;
 import com.devbraga.bragacommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.persistence.EntityNotFoundException;
-import org.hibernate.boot.model.relational.Database;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
@@ -38,10 +37,10 @@ public class ProductService {
 
     @Transactional
     public ProductDTO insert(ProductDTO dto){
-        Product entity = new Product();
-        copyDtoToEntity(dto,entity);
-        entity = productRepository.save(entity);
-        return new ProductDTO(entity);
+            Product entity = new Product();
+            copyDtoToEntity(dto,entity);
+            entity = productRepository.save(entity);
+            return new ProductDTO(entity);
     }
 
     @Transactional
