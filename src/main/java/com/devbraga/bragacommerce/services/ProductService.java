@@ -28,8 +28,8 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(Pageable pageable){
-        Page<Product> result = productRepository.findAll(pageable);
+    public Page<ProductDTO> findAll(String name, Pageable pageable){
+        Page<Product> result = productRepository.searchByName(name, pageable);
 
         //Método para transformar os registros da lista original em DTO
         return result.map(x -> new ProductDTO(x));
