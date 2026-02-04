@@ -9,5 +9,4 @@ public class BgcommerceApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(BgcommerceApplication.class, args);
 	}
-
 }
