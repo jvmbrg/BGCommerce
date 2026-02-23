@@ -3,6 +3,7 @@ package com.devbraga.bragacommerce.controllers.handlers;
 import com.devbraga.bragacommerce.dto.CustomError;
 import com.devbraga.bragacommerce.dto.ValidationError;
 import com.devbraga.bragacommerce.services.exceptions.DatabaseException;
+import com.devbraga.bragacommerce.services.exceptions.ForbiddenException;
 import com.devbraga.bragacommerce.services.exceptions.ResourceNotFoundException;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.http.HttpStatus;
@@ -42,6 +43,13 @@ public class ControllerExceptionHandler {
         for(FieldError f: e.getBindingResult().getFieldErrors()){
             err.addErrors(f.getField(), f.getDefaultMessage());
         }
+        return ResponseEntity.status(status).body(err);
+    }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<CustomError> forbidden(ForbiddenException e, HttpServletRequest request){
+        HttpStatus status = HttpStatus.FORBIDDEN;
+        CustomError err = new CustomError(Instant.now(), status.value(), e.getMessage(), request.getRequestURI());
         return ResponseEntity.status(status).body(err);
     }
 }
