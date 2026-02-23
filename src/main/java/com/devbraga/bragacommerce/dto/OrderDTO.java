@@ -3,6 +3,7 @@ package com.devbraga.bragacommerce.dto;
 import com.devbraga.bragacommerce.entities.Order;
 import com.devbraga.bragacommerce.entities.OrderItem;
 import com.devbraga.bragacommerce.enums.OrderStatus;
+import jakarta.validation.constraints.NotEmpty;
 
 import java.time.Instant;
 import java.util.ArrayList;
@@ -15,6 +16,8 @@ public class OrderDTO {
     private OrderStatus status;
     private UserMinDTO client;
     private PaymentDTO payment;
+
+    @NotEmpty(message = "Deve ter pelo menos um item")
     private List<OrderItemDTO> items = new ArrayList<>();
 
 
