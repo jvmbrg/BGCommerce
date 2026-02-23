@@ -1,16 +1,11 @@
 package com.devbraga.bragacommerce.controllers;
 
-import com.devbraga.bragacommerce.dto.ProductDTO;
 import com.devbraga.bragacommerce.dto.UserDTO;
-import com.devbraga.bragacommerce.entities.User;
-import com.devbraga.bragacommerce.services.ProductService;
 import com.devbraga.bragacommerce.services.UserService;
-import org.apache.coyote.Response;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 

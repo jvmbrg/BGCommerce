@@ -1,6 +1,7 @@
 package com.devbraga.bragacommerce.services;
 
 import com.devbraga.bragacommerce.dto.ProductDTO;
+import com.devbraga.bragacommerce.dto.ProductMinDTO;
 import com.devbraga.bragacommerce.entities.Product;
 import com.devbraga.bragacommerce.repository.ProductRepository;
 import com.devbraga.bragacommerce.services.exceptions.DatabaseException;
@@ -28,11 +29,11 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public Page<ProductDTO> findAll(String name, Pageable pageable){
+    public Page<ProductMinDTO> findAll(String name, Pageable pageable){
         Page<Product> result = productRepository.searchByName(name, pageable);
 
         //Método para transformar os registros da lista original em DTO
-        return result.map(x -> new ProductDTO(x));
+        return result.map(x -> new ProductMinDTO(x));
     }
 
     @Transactional

@@ -1,6 +1,7 @@
 package com.devbraga.bragacommerce.controllers;
 
 import com.devbraga.bragacommerce.dto.ProductDTO;
+import com.devbraga.bragacommerce.dto.ProductMinDTO;
 import com.devbraga.bragacommerce.services.ProductService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +21,8 @@ public class ProductController {
     private ProductService productService;
 
     @GetMapping
-    public ResponseEntity<Page<ProductDTO>> findAll(@RequestParam(name = "name", defaultValue = "") String name,
-                                                    Pageable pageable){
+    public ResponseEntity<Page<ProductMinDTO>> findAll(@RequestParam(name = "name", defaultValue = "") String name,
+                                                       Pageable pageable){
         return ResponseEntity.ok(productService.findAll(name, pageable));
     }
 
