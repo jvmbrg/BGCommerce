@@ -18,6 +18,7 @@ public class ValidationError extends CustomError{
     /* Método para adicionar uma nova FieldMessage a essa lista de erros. FieldMessage foi criada
           para salvar as exceções descritas nos atributos do DTO */
     public void addErrors(String fieldName, String message){
+        errors.removeIf(x -> x.getFieldName().equals(fieldName));
         errors.add(new FieldMessage(fieldName, message));
     }
 
