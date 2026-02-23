@@ -1,7 +1,9 @@
 package com.devbraga.bragacommerce.services;
 
+import com.devbraga.bragacommerce.dto.CategoryDTO;
 import com.devbraga.bragacommerce.dto.ProductDTO;
 import com.devbraga.bragacommerce.dto.ProductMinDTO;
+import com.devbraga.bragacommerce.entities.Category;
 import com.devbraga.bragacommerce.entities.Product;
 import com.devbraga.bragacommerce.repository.ProductRepository;
 import com.devbraga.bragacommerce.services.exceptions.DatabaseException;
@@ -63,6 +65,14 @@ public class ProductService {
         entity.setDescription(dto.getDescription());
         entity.setPrice(dto.getPrice());
         entity.setImgUrl(dto.getImgUrl());
+
+        entity.getCategories().clear();
+
+        for(CategoryDTO catDTO : dto.getCategories()){
+            Category cat = new Category();
+            cat.setId(catDTO.getId());
+            entity.getCategories().add(cat);
+        }
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)

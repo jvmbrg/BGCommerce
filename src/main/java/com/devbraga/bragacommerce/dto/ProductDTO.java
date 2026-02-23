@@ -1,9 +1,14 @@
 package com.devbraga.bragacommerce.dto;
 
+import com.devbraga.bragacommerce.entities.Category;
 import com.devbraga.bragacommerce.entities.Product;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.Size;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ProductDTO {
     private Long id;
@@ -21,6 +26,11 @@ public class ProductDTO {
 
     private String imgUrl;
 
+    @NotEmpty(message = "Deve ter pelo menos uma categoria")
+    private List<CategoryDTO> categories = new ArrayList<>();
+
+
+
     public ProductDTO(){}
     public ProductDTO(String description, Long id, String imgUrl, String name, Double price) {
         this.description = description;
@@ -37,6 +47,9 @@ public class ProductDTO {
         imgUrl = entity.getImgUrl();
         name = entity.getName();
         price = entity.getPrice();
+        for(Category cat : entity.getCategories()){
+            categories.add(new CategoryDTO(cat));
+        }
     }
 
     public String getDescription() {
@@ -57,5 +70,9 @@ public class ProductDTO {
 
     public Double getPrice() {
         return price;
+    }
+
+    public List<CategoryDTO> getCategories() {
+        return categories;
     }
 }
